@@ -1,7 +1,7 @@
 import os
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from OpenProgramms_ui import Ui_MainWindow
+from OpenPrograms_ui import Ui_MainWindow
 
 
 class OpenPrograms(QMainWindow, Ui_MainWindow):
@@ -16,7 +16,7 @@ class OpenPrograms(QMainWindow, Ui_MainWindow):
         os.startfile(self.inputPath.text())
 
     def add(self):
-        self.listOfApps.addItem(self.inputPath.text())
+        self.listOfApps.addItem(self.inputName.text())
 
     def get(self):
         self.inputPath.setText(self.listOfApps.currentItem().text())
