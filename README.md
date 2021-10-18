@@ -5,5 +5,5 @@
 <h2>Versions</h2>
 <p>
 So far, versions of the program will be released regularly, as this is my programming project</p>
-<h2>Gendalf <3</h2>
+<h2>Gandalf <3</h2>
 <img src="https://misha133.ru/7Q3S.gif"></img>
