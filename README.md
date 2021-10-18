@@ -14,5 +14,5 @@ So far, versions of the program will be released regularly, as this is my progra
 
 <img src="https://misha133.ru/m133.png"> </img>
 
-<img src="<img src="https://misha133.ru/7Q3S.gif"> </img>
+<img src="https://misha133.ru/VID-20211015-WA0000.mp4"> </img>
 
