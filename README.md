@@ -10,3 +10,6 @@ So far, versions of the program will be released regularly, as this is my progra
 <h2>Mishe</h2>
 Еще раз сука тронеш ридми приду и пизды дам сука.
 
+# Сэру Гею
+
+<img src="https://cxid.info/upload/670x/1582037084.jpg"></img>
