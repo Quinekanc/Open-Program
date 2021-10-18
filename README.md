@@ -7,3 +7,10 @@
 So far, versions of the program will be released regularly, as this is my programming project</p>
 <h2>Gendalf <3</h2>
 <img src="https://misha133.ru/7Q3S.gif"></img>
+
+<img src="https://misha133.ru/zhmix.gif"> </img>
+
+<img src="https://misha133.ru/amogus.gif"> </img>
+
+<img src="https://misha133.ru/m133.png"> </img>
+
