@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(221, 41)
+        MainWindow.resize(221, 241)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.inputPath = QtWidgets.QLineEdit(self.centralwidget)
@@ -23,6 +23,12 @@ class Ui_MainWindow(object):
         self.openPath = QtWidgets.QPushButton(self.centralwidget)
         self.openPath.setGeometry(QtCore.QRect(170, 10, 41, 21))
         self.openPath.setObjectName("openPath")
+        self.listOfApps = QtWidgets.QListWidget(self.centralwidget)
+        self.listOfApps.setGeometry(QtCore.QRect(10, 40, 151, 192))
+        self.listOfApps.setObjectName("listOfApps")
+        self.addButton = QtWidgets.QPushButton(self.centralwidget)
+        self.addButton.setGeometry(QtCore.QRect(170, 40, 41, 23))
+        self.addButton.setObjectName("addButton")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -32,3 +38,4 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Open Programms v0.1"))
         self.openPath.setText(_translate("MainWindow", "Open"))
+        self.addButton.setText(_translate("MainWindow", "Add"))
