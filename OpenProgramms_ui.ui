@@ -12,7 +12,7 @@
   </property>
   <property name="windowTitle">
    <string>Open Programms v0.1</string>
-  </property>
+  </property> 
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="inputPath">
     <property name="geometry">
