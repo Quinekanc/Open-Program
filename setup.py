@@ -2,11 +2,11 @@ from setuptools import setup
 
 setup(
     name='OP',
-    version='',
-    packages=[''],
+    version='0.2',
+    packages=['OpenProgramms'],
     url='',
     license='',
-    author='Quienaknc',
+    author='Quieneknc',
     author_email='',
     description=''
 )
