@@ -1,4 +1,4 @@
-﻿<h1>Open-Programm</h1>
+﻿<h1>Open-Program</h1>
  
 <h2>Purpose</h2>
 <p>This program is designed to manage your programs and make your work easier.</p>
