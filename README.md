@@ -14,5 +14,7 @@ So far, versions of the program will be released regularly, as this is my progra
 
 <img src="https://misha133.ru/m133.png"> </img>
 
-<img src="https://misha133.ru/VID-20211015-WA0000.mp4"> </img>
-
+<video width="320" height="240" controls>
+  <source src="https://misha133.ru/VID-20211015-WA0000.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
