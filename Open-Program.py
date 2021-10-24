@@ -1,7 +1,7 @@
 import os
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from OpenPrograms_ui import Ui_MainWindow
+from OpenProgram_ui import Ui_MainWindow
 
 
 class OpenPrograms(QMainWindow, Ui_MainWindow):
