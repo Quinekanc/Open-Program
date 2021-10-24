@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Open Programms v0.3</string>
+   <string>Open-Program</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLineEdit" name="inputName">

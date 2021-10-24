@@ -58,7 +58,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Open Programms v0.3"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Open-Program"))
         self.appName.setText(_translate("MainWindow", "Имя приложения"))
         self.appPath.setText(_translate("MainWindow", "Путь к приложению"))
         self.addButton.setText(_translate("MainWindow", "Добавить"))
