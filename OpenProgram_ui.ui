@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>391</width>
+    <width>511</width>
     <height>341</height>
    </rect>
   </property>
@@ -29,7 +29,7 @@
      <rect>
       <x>10</x>
       <y>140</y>
-      <width>371</width>
+      <width>241</width>
       <height>192</height>
      </rect>
     </property>
@@ -78,7 +78,7 @@
      <rect>
       <x>10</x>
       <y>110</y>
-      <width>241</width>
+      <width>488</width>
       <height>25</height>
      </rect>
     </property>
@@ -99,43 +99,17 @@
      </item>
      <item>
       <widget class="QPushButton" name="removeButton">
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>Убрать</string>
+        <string>Кнопка существующая чтобы с ошибкой выйти из программы</string>
        </property>
       </widget>
      </item>
     </layout>
-   </widget>
-   <widget class="QLCDNumber" name="lcdNumber">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>70</y>
-      <width>121</width>
-      <height>41</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>30</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Impact</family>
-      <pointsize>9</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string> Счетчик приложений</string>
-    </property>
    </widget>
   </widget>
  </widget>
