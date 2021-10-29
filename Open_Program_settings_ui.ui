@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>windowSettings</class>
+ <widget class="QMainWindow" name="windowSettings">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>341</width>
+    <height>341</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Open-Program</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLineEdit" name="inputName">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>321</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="appName">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>241</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string>Имя приложения</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="appPath">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>241</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Путь к приложению</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="inputPath">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>281</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>321</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="addButton">
+       <property name="text">
+        <string>Добавить</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="removeButton">
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Убрать</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="returnButton">
+       <property name="text">
+        <string>Вернутся</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="dialogChoise">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>80</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;-</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="listView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>321</width>
+      <height>192</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

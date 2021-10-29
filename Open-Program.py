@@ -1,47 +1,103 @@
 import os
 import sys
 import sqlite3
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from OpenProgram_ui import Ui_MainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from Open_Program_settings_ui import Ui_windowSettings
+from Open_Program_ui import Ui_windowStart
 
 
-class OpenPrograms(QMainWindow, Ui_MainWindow):
+class OpenProgramSettings(QMainWindow, Ui_windowSettings):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.database = sqlite3.connect('Open-Program.sqlite3')
-        self.cursor = self.database.cursor()
-        for i in self.cursor.execute('select name from openprogram').fetchall():
-            self.listOfApps.addItem(*i)
+        try:
+            self.database = sqlite3.connect('Open-Program.sqlite3')
+            self.cursor = self.database.cursor()
+        except Exception:
+            f = open('Open-Program.sqlite3', 'w+')
+            f.close()
+            self.database = sqlite3.connect('Open-Program.sqlite3')
+            self.cursor = self.database.cursor()
+            self.cursor.execute('create table openprogram (id varchar(255), name varchar(255), path varchar(255)')
+            self.database.commit()
+
+        for element in self.cursor.execute('select name from openprogram'):
+            self.listView.addItem(*element)
+
         self.addButton.clicked.connect(self.add)
-        self.openPath.clicked.connect(self.open)
         self.removeButton.clicked.connect(self.remove)
-        self.listOfApps.clicked.connect(self.get)
+        self.listView.itemClicked.connect(self.get)
+        self.listView.itemDoubleClicked.connect(self.get_double)
+        self.returnButton.clicked.connect(self.return_to_start)
 
     def open(self):
         os.startfile(self.inputPath.text())
 
     def add(self):
-        self.listOfApps.addItem(self.inputName.text())
-        try:
-            self.cursor.execute(f"insert into openprogram values({len(self.listOfApps)}, '{self.inputName.text()}', "
-                                f"'{self.inputPath.text()}')")
-            self.database.commit()
-        except Exception:
-            self.cursor.execute("create table openprogram (id, name, path)")
-            self.cursor.execute(f"insert into openprogram values (1, {self.inputName.text()}, {self.inputPath.text()})")
-            self.database.commit()
+        if self.cursor.execute("select max(id) from openprogram").fetchall() == [(None,)]:
+            self.cursor.execute(f"""
+                                    insert into openprogram 
+                                    values(1, '{self.inputName.text()}', '{self.inputPath.text()}')
+                                """).fetchall()
+        else:
+            self.cursor.execute(f"""
+                                    insert into openprogram 
+                                    values((select max(id) from openprogram) + 1, 
+                                    '{self.inputName.text()}', '{self.inputPath.text()}')
+                                """).fetchall()
+        self.database.commit()
+        self.listView.addItem(f'{self.inputName.text()}')
 
     def get(self):
-        self.inputName.setText(self.listOfApps.currentItem().text())
-        self.inputPath.setText(*self.cursor.execute(f'''select path from openprogram 
-                                      where name = "{self.listOfApps.currentItem().text()}"''').fetchall()[0])
+        self.inputName.setText(self.listView.currentItem().text())
+
+        self.inputPath.setText(self.cursor.execute(f'''select path from openprogram 
+                                      where name = "{self.listView.currentItem().text()}"''').fetchall()[0][0])
+
+    def get_double(self):
+        self.get()
+        self.open()
 
     def remove(self):
-        self.listOfApps.removeItemWidget()
+        self.listView.removeItemWidget()
+
+    def return_to_start(self):
+        try:
+            ex_start.show()
+            ex_set.close()
+        except Exception:
+            pass
+
+
+class OpenProgramStart(QMainWindow, Ui_windowStart):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+
+        try:
+            self.database = sqlite3.connect('Open-Program.sqlite3')
+            self.cursor = self.database.cursor()
+        except Exception:
+            f = open('Open-Program.sqlite3', 'w+')
+            f.close()
+            self.database = sqlite3.connect('Open-Program.sqlite3')
+            self.cursor = self.database.cursor()
+
+        for element in self.cursor.execute('select name from openprogram'):
+            self.listView.addItem(*element)
+
+        self.actionSettings.triggered.connect(self.return_to_settings)
+
+    def return_to_settings(self):
+        try:
+            ex_start.close()
+            ex_set.show()
+        except Exception:
+            pass
 
 
 app = QApplication(sys.argv)
-ex = OpenPrograms()
-ex.show()
+ex_set = OpenProgramSettings()
+ex_start = OpenProgramStart()
+ex_start.show()
 sys.exit(app.exec_())
