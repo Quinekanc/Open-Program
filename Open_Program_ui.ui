@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>341</width>
-    <height>341</height>
+    <height>361</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,21 +20,8 @@
       <x>10</x>
       <y>10</y>
       <width>321</width>
-      <height>271</height>
+      <height>321</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="openButton">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>290</y>
-      <width>321</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Открыть</string>
     </property>
    </widget>
   </widget>
@@ -52,15 +39,26 @@
      <string>Меню</string>
     </property>
     <addaction name="actionSettings"/>
+    <addaction name="separator"/>
+    <addaction name="exitAction"/>
    </widget>
    <addaction name="menuButton"/>
   </widget>
   <action name="actionSettings">
    <property name="icon">
-    <iconset theme="C:\Users\User\PycharmProjects\Open-Program\icos\cogweel.ico"/>
+    <iconset theme="C:\Users\User\PycharmProjects\Open-Program\icos\cogweel.ico">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Настройки</string>
+   </property>
+  </action>
+  <action name="exitAction">
+   <property name="icon">
+    <iconset theme="C:\Users\User\PycharmProjects\Open-Program\icos\exit.ico"/>
+   </property>
+   <property name="text">
+    <string>Выход</string>
    </property>
   </action>
  </widget>

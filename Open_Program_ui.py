@@ -14,15 +14,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_windowStart(object):
     def setupUi(self, windowStart):
         windowStart.setObjectName("windowStart")
-        windowStart.resize(341, 341)
+        windowStart.resize(341, 361)
         self.centralwidget = QtWidgets.QWidget(windowStart)
         self.centralwidget.setObjectName("centralwidget")
         self.listView = QtWidgets.QListWidget(self.centralwidget)
-        self.listView.setGeometry(QtCore.QRect(10, 10, 321, 271))
+        self.listView.setGeometry(QtCore.QRect(10, 10, 321, 321))
         self.listView.setObjectName("listView")
-        self.openButton = QtWidgets.QPushButton(self.centralwidget)
-        self.openButton.setGeometry(QtCore.QRect(10, 290, 321, 21))
-        self.openButton.setObjectName("openButton")
         windowStart.setCentralWidget(self.centralwidget)
         self.menuBar = QtWidgets.QMenuBar(windowStart)
         self.menuBar.setGeometry(QtCore.QRect(0, 0, 341, 21))
@@ -34,7 +31,13 @@ class Ui_windowStart(object):
         icon = QtGui.QIcon.fromTheme("C:\\Users\\User\\PycharmProjects\\Open-Program\\icos\\cogweel.ico")
         self.actionSettings.setIcon(icon)
         self.actionSettings.setObjectName("actionSettings")
+        self.exitAction = QtWidgets.QAction(windowStart)
+        icon = QtGui.QIcon.fromTheme("C:\\Users\\User\\PycharmProjects\\Open-Program\\icos\\exit.ico")
+        self.exitAction.setIcon(icon)
+        self.exitAction.setObjectName("exitAction")
         self.menuButton.addAction(self.actionSettings)
+        self.menuButton.addSeparator()
+        self.menuButton.addAction(self.exitAction)
         self.menuBar.addAction(self.menuButton.menuAction())
 
         self.retranslateUi(windowStart)
@@ -43,6 +46,6 @@ class Ui_windowStart(object):
     def retranslateUi(self, windowStart):
         _translate = QtCore.QCoreApplication.translate
         windowStart.setWindowTitle(_translate("windowStart", "Open-Program"))
-        self.openButton.setText(_translate("windowStart", "Открыть"))
         self.menuButton.setTitle(_translate("windowStart", "Меню"))
         self.actionSettings.setText(_translate("windowStart", "Настройки"))
+        self.exitAction.setText(_translate("windowStart", "Выход"))

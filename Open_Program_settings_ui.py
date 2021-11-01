@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_windowSettings(object):
     def setupUi(self, windowSettings):
         windowSettings.setObjectName("windowSettings")
-        windowSettings.resize(341, 341)
+        windowSettings.resize(341, 361)
         self.centralwidget = QtWidgets.QWidget(windowSettings)
         self.centralwidget.setObjectName("centralwidget")
         self.inputName = QtWidgets.QLineEdit(self.centralwidget)
@@ -52,7 +52,7 @@ class Ui_windowSettings(object):
         self.dialogChoise.setGeometry(QtCore.QRect(300, 80, 31, 21))
         self.dialogChoise.setObjectName("dialogChoise")
         self.listView = QtWidgets.QListWidget(self.centralwidget)
-        self.listView.setGeometry(QtCore.QRect(10, 140, 321, 192))
+        self.listView.setGeometry(QtCore.QRect(10, 140, 321, 211))
         self.listView.setObjectName("listView")
         windowSettings.setCentralWidget(self.centralwidget)
 

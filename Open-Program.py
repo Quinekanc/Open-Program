@@ -10,19 +10,14 @@ class OpenProgramSettings(QMainWindow, Ui_windowSettings):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        try:
-            self.database = sqlite3.connect('Open-Program.sqlite3')
-            self.cursor = self.database.cursor()
-        except Exception:
-            f = open('Open-Program.sqlite3', 'w+')
-            f.close()
-            self.database = sqlite3.connect('Open-Program.sqlite3')
-            self.cursor = self.database.cursor()
-            self.cursor.execute('create table openprogram (id varchar(255), name varchar(255), path varchar(255)')
-            self.database.commit()
+        self.database = sqlite3.connect('Open-Program.sqlite3')
+        self.cursor = self.database.cursor()
 
-        for element in self.cursor.execute('select name from openprogram'):
-            self.listView.addItem(*element)
+        try:
+            for element in self.cursor.execute('select name from openprogram'):
+                self.listView.addItem(*element)
+        except Exception:
+            pass
 
         self.addButton.clicked.connect(self.add)
         self.removeButton.clicked.connect(self.remove)
@@ -59,11 +54,17 @@ class OpenProgramSettings(QMainWindow, Ui_windowSettings):
         self.open()
 
     def remove(self):
-        self.listView.removeItemWidget()
+        self.cursor.execute(f'''delete from openprogram where name = "{self.listView.currentItem().text()}"''')
+        listItems = self.listView.selectedItems()
+        if not listItems: return
+        for item in listItems:
+            self.listView.takeItem(self.listView.row(item))
+        self.database.commit()
 
     def return_to_start(self):
         try:
             ex_start.show()
+            ex_start.__init__()
             ex_set.close()
         except Exception:
             pass
@@ -74,19 +75,23 @@ class OpenProgramStart(QMainWindow, Ui_windowStart):
         super().__init__()
         self.setupUi(self)
 
-        try:
-            self.database = sqlite3.connect('Open-Program.sqlite3')
-            self.cursor = self.database.cursor()
-        except Exception:
-            f = open('Open-Program.sqlite3', 'w+')
-            f.close()
-            self.database = sqlite3.connect('Open-Program.sqlite3')
-            self.cursor = self.database.cursor()
+        self.database = sqlite3.connect('Open-Program.sqlite3')
+        self.cursor = self.database.cursor()
 
-        for element in self.cursor.execute('select name from openprogram'):
-            self.listView.addItem(*element)
+        try:
+            for element in self.cursor.execute('select name from openprogram'):
+                self.listView.addItem(*element)
+        except Exception:
+            self.cursor.execute('create table openprogram (id, name, path)')
+            for element in self.cursor.execute('select name from openprogram'):
+                self.listView.addItem(*element)
 
         self.actionSettings.triggered.connect(self.return_to_settings)
+        self.listView.itemDoubleClicked.connect(self.get_double)
+
+    def start_func(self):
+        for element in self.cursor.execute('select name from openprogram'):
+            self.listView.addItem(*element)
 
     def return_to_settings(self):
         try:
@@ -94,6 +99,10 @@ class OpenProgramStart(QMainWindow, Ui_windowStart):
             ex_set.show()
         except Exception:
             pass
+
+    def get_double(self):
+        os.startfile(self.cursor.execute(f'''select path 
+        from openprogram where name = "{self.listView.currentItem().text()}"''').fetchall()[0][0])
 
 
 app = QApplication(sys.argv)
