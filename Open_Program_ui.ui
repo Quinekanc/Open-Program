@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Open-Program</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="C:\Users\User\PycharmProjects\Open-Program\icos\app.ico"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QListWidget" name="listView">
     <property name="geometry">
@@ -55,7 +58,8 @@
   </action>
   <action name="exitAction">
    <property name="icon">
-    <iconset theme="C:\Users\User\PycharmProjects\Open-Program\icos\exit.ico"/>
+    <iconset theme="C:\Users\User\PycharmProjects\Open-Program\icos\exit.ico">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Выход</string>

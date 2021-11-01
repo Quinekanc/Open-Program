@@ -15,6 +15,8 @@ class Ui_windowStart(object):
     def setupUi(self, windowStart):
         windowStart.setObjectName("windowStart")
         windowStart.resize(341, 361)
+        icon = QtGui.QIcon.fromTheme("C:\\Users\\User\\PycharmProjects\\Open-Program\\icos\\app.ico")
+        windowStart.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(windowStart)
         self.centralwidget.setObjectName("centralwidget")
         self.listView = QtWidgets.QListWidget(self.centralwidget)
