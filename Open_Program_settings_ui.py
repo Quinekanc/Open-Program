@@ -15,6 +15,8 @@ class Ui_windowSettings(object):
     def setupUi(self, windowSettings):
         windowSettings.setObjectName("windowSettings")
         windowSettings.resize(341, 361)
+        icon = QtGui.QIcon.fromTheme("C:\\Users\\User\\PycharmProjects\\Open-Program\\icos\\app.ico")
+        windowSettings.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(windowSettings)
         self.centralwidget.setObjectName("centralwidget")
         self.inputName = QtWidgets.QLineEdit(self.centralwidget)

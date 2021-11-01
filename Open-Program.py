@@ -10,7 +10,7 @@ class OpenProgramSettings(QMainWindow, Ui_windowSettings):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.database = sqlite3.connect('Open-Program.sqlite3')
+        self.database = sqlite3.connect('C:\\Users\\User\\Documents\\Open-Program.sqlite3')
         self.cursor = self.database.cursor()
 
         try:
@@ -75,7 +75,7 @@ class OpenProgramStart(QMainWindow, Ui_windowStart):
         super().__init__()
         self.setupUi(self)
 
-        self.database = sqlite3.connect('Open-Program.sqlite3')
+        self.database = sqlite3.connect('C:\\Users\\User\\Documents\\Open-Program.sqlite3')
         self.cursor = self.database.cursor()
 
         try:
