@@ -32,7 +32,7 @@ class Ui_windowSettings(object):
         self.inputPath = QtWidgets.QLineEdit(self.centralwidget)
         self.inputPath.setGeometry(QtCore.QRect(10, 80, 281, 21))
         self.inputPath.setObjectName("inputPath")
-        self.inputPath.setDisabled(True)
+        self.inputPath.setReadOnly(True)
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.horizontalLayoutWidget.setGeometry(QtCore.QRect(10, 110, 321, 25))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
