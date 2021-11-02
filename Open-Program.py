@@ -1,7 +1,7 @@
 import os
 import sys
 import sqlite3
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QFileDialog
 from Open_Program_settings_ui import Ui_windowSettings
 from Open_Program_ui import Ui_windowStart
 
@@ -12,21 +12,28 @@ class OpenProgramSettings(QMainWindow, Ui_windowSettings):
         self.setupUi(self)
         self.database = sqlite3.connect('C:\\Users\\User\\Documents\\Open-Program.sqlite3')
         self.cursor = self.database.cursor()
+        self.listOfApps = []
 
         try:
-            for element in self.cursor.execute('select name from openprogram'):
+            for element in self.cursor.execute('select name from openprogram').fetchall():
                 self.listView.addItem(*element)
+                self.listOfApps.append(*element)
         except Exception:
             pass
 
         self.addButton.clicked.connect(self.add)
         self.removeButton.clicked.connect(self.remove)
-        self.listView.itemClicked.connect(self.get)
+        self.dialogChoise.clicked.connect(self.dialog)
         self.listView.itemDoubleClicked.connect(self.get_double)
         self.returnButton.clicked.connect(self.return_to_start)
 
     def open(self):
         os.startfile(self.inputPath.text())
+
+    def dialog(self):
+        file = QFileDialog.getOpenFileName(self, 'Выбрать приложение', '')[0]
+        self.inputPath.setText(file)
+        self.inputName.setText(file.split('/')[-1])
 
     def add(self):
         if self.cursor.execute("select max(id) from openprogram").fetchall() == [(None,)]:
@@ -64,8 +71,8 @@ class OpenProgramSettings(QMainWindow, Ui_windowSettings):
     def return_to_start(self):
         try:
             ex_start.show()
-            ex_start.__init__()
-            ex_set.close()
+            ex_start.start_func()
+            ex_set.hide()
         except Exception:
             pass
 
@@ -77,26 +84,30 @@ class OpenProgramStart(QMainWindow, Ui_windowStart):
 
         self.database = sqlite3.connect('C:\\Users\\User\\Documents\\Open-Program.sqlite3')
         self.cursor = self.database.cursor()
+        self.listOfApps = []
 
         try:
-            for element in self.cursor.execute('select name from openprogram'):
+            for element in self.cursor.execute('select name from openprogram').fetchall():
                 self.listView.addItem(*element)
+                self.listOfApps.append(*element)
         except Exception:
             self.cursor.execute('create table openprogram (id, name, path)')
-            for element in self.cursor.execute('select name from openprogram'):
+            for element in self.cursor.execute('select name from openprogram').fetchall():
                 self.listView.addItem(*element)
+                self.listOfApps.append(*element)
 
         self.actionSettings.triggered.connect(self.return_to_settings)
         self.listView.itemDoubleClicked.connect(self.get_double)
 
     def start_func(self):
-        for element in self.cursor.execute('select name from openprogram'):
+        self.listView.clear()
+        for element in self.cursor.execute('select name from openprogram').fetchall():
             self.listView.addItem(*element)
 
     def return_to_settings(self):
         try:
-            ex_start.close()
             ex_set.show()
+            ex_start.hide()
         except Exception:
             pass
 
