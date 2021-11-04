@@ -1,7 +1,7 @@
 import os
 import sys
 import sqlite3
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QFileDialog
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from Open_Program_settings_ui import Ui_windowSettings
 from Open_Program_ui import Ui_windowStart
 
@@ -28,45 +28,63 @@ class OpenProgramSettings(QMainWindow, Ui_windowSettings):
         self.returnButton.clicked.connect(self.return_to_start)
 
     def open(self):
-        os.startfile(self.inputPath.text())
+        try:
+            os.startfile(self.inputPath.text())
+        except Exception:
+            pass
 
     def dialog(self):
-        file = QFileDialog.getOpenFileName(self, 'Выбрать приложение', '')[0]
-        self.inputPath.setText(file)
-        self.inputName.setText(file.split('/')[-1])
+        try:
+            file = QFileDialog.getOpenFileName(self, 'Выбрать приложение', '')[0]
+            self.inputPath.setText(file)
+            self.inputName.setText(file.split('/')[-1])
+        except Exception:
+            pass
 
     def add(self):
-        if self.cursor.execute("select max(id) from openprogram").fetchall() == [(None,)]:
-            self.cursor.execute(f"""
-                                    insert into openprogram 
-                                    values(1, '{self.inputName.text()}', '{self.inputPath.text()}')
-                                """).fetchall()
-        else:
-            self.cursor.execute(f"""
-                                    insert into openprogram 
-                                    values((select max(id) from openprogram) + 1, 
-                                    '{self.inputName.text()}', '{self.inputPath.text()}')
-                                """).fetchall()
-        self.database.commit()
-        self.listView.addItem(f'{self.inputName.text()}')
+        try:
+            if self.cursor.execute("select max(id) from openprogram").fetchall() == [(None,)]:
+                self.cursor.execute(f"""
+                                        insert into openprogram 
+                                        values(1, '{self.inputName.text()}', '{self.inputPath.text()}')
+                                    """).fetchall()
+            else:
+                self.cursor.execute(f"""
+                                        insert into openprogram 
+                                        values((select max(id) from openprogram) + 1, 
+                                        '{self.inputName.text()}', '{self.inputPath.text()}')
+                                    """).fetchall()
+            self.database.commit()
+            self.listView.addItem(f'{self.inputName.text()}')
+        except Exception:
+            pass
 
     def get(self):
-        self.inputName.setText(self.listView.currentItem().text())
+        try:
+            self.inputName.setText(self.listView.currentItem().text())
 
-        self.inputPath.setText(self.cursor.execute(f'''select path from openprogram 
-                                      where name = "{self.listView.currentItem().text()}"''').fetchall()[0][0])
+            self.inputPath.setText(self.cursor.execute(f'''select path from openprogram 
+                                          where name = "{self.listView.currentItem().text()}"''').fetchall()[0][0])
+        except Exception:
+            pass
 
     def get_double(self):
-        self.get()
-        self.open()
+        try:
+            self.get()
+            self.open()
+        except Exception:
+            pass
 
     def remove(self):
-        self.cursor.execute(f'''delete from openprogram where name = "{self.listView.currentItem().text()}"''')
-        listItems = self.listView.selectedItems()
-        if not listItems: return
-        for item in listItems:
-            self.listView.takeItem(self.listView.row(item))
-        self.database.commit()
+        try:
+            self.cursor.execute(f'''delete from openprogram where name = "{self.listView.currentItem().text()}"''')
+            listItems = self.listView.selectedItems()
+            if not listItems: return
+            for item in listItems:
+                self.listView.takeItem(self.listView.row(item))
+            self.database.commit()
+        except Exception:
+            pass
 
     def return_to_start(self):
         try:
@@ -97,12 +115,19 @@ class OpenProgramStart(QMainWindow, Ui_windowStart):
                 self.listOfApps.append(*element)
 
         self.actionSettings.triggered.connect(self.return_to_settings)
+        self.exitAction.triggered.connect(self.exit)
         self.listView.itemDoubleClicked.connect(self.get_double)
 
     def start_func(self):
         self.listView.clear()
         for element in self.cursor.execute('select name from openprogram').fetchall():
             self.listView.addItem(*element)
+
+    def exit(self):
+        try:
+            ex_start.close()
+        except Exception:
+            pass
 
     def return_to_settings(self):
         try:
@@ -112,8 +137,11 @@ class OpenProgramStart(QMainWindow, Ui_windowStart):
             pass
 
     def get_double(self):
-        os.startfile(self.cursor.execute(f'''select path 
-        from openprogram where name = "{self.listView.currentItem().text()}"''').fetchall()[0][0])
+        try:
+            os.startfile(self.cursor.execute(f'''select path 
+            from openprogram where name = "{self.listView.currentItem().text()}"''').fetchall()[0][0])
+        except Exception:
+            pass
 
 
 app = QApplication(sys.argv)
