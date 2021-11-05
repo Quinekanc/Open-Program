@@ -20,7 +20,7 @@ class Ui_windowSettings(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(windowSettings.sizePolicy().hasHeightForWidth())
         windowSettings.setSizePolicy(sizePolicy)
-        icon = QtGui.QIcon.fromTheme("C:\\Users\\User\\PycharmProjects\\Open-Program\\icos\\app.ico")
+        icon = QtGui.QIcon(r"icos//app.ico")
         windowSettings.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(windowSettings)
         self.centralwidget.setObjectName("centralwidget")
