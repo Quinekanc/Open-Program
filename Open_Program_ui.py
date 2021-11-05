@@ -15,6 +15,7 @@ class Ui_windowStart(object):
     def setupUi(self, windowStart):
         windowStart.setObjectName("windowStart")
         windowStart.resize(341, 361)
+        windowStart.setMinimumSize(QtCore.QSize(341, 361))
         icon = QtGui.QIcon(r"icos\app.ico")
         windowStart.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(windowStart)
