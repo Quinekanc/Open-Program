@@ -14,7 +14,8 @@
    <string>Open-Program</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="C:\Users\User\PycharmProjects\Open-Program\icos\app.ico"/>
+   <iconset theme="C:\Users\User\PycharmProjects\Open-Program\icos\app.ico">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QListWidget" name="listView">
@@ -42,6 +43,7 @@
      <string>Меню</string>
     </property>
     <addaction name="actionSettings"/>
+    <addaction name="actionDataBase"/>
     <addaction name="separator"/>
     <addaction name="exitAction"/>
    </widget>
@@ -63,6 +65,14 @@
    </property>
    <property name="text">
     <string>Выход</string>
+   </property>
+  </action>
+  <action name="actionDataBase">
+   <property name="icon">
+    <iconset theme="C:\Users\User\PycharmProjects\Open-Program\icos\database.ico"/>
+   </property>
+   <property name="text">
+    <string>Используемая база данных</string>
    </property>
   </action>
  </widget>
