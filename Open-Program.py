@@ -1,7 +1,7 @@
 import os
 import sys
 import sqlite3
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QInputDialog
 from Open_Program_settings_ui import Ui_windowSettings
 from Open_Program_ui import Ui_windowStart
 
@@ -104,6 +104,7 @@ class OpenProgramStart(QMainWindow, Ui_windowStart):
         self.cursor = self.database.cursor()
         self.listOfApps = []
 
+
         try:
             for element in self.cursor.execute('select name from openprogram').fetchall():
                 self.listView.addItem(*element)
@@ -117,6 +118,7 @@ class OpenProgramStart(QMainWindow, Ui_windowStart):
         self.actionSettings.triggered.connect(self.return_to_settings)
         self.exitAction.triggered.connect(self.exit)
         self.listView.itemDoubleClicked.connect(self.get_double)
+        self.actionDataBase.triggered.connect(self.change_db)
 
     def start_func(self):
         self.listView.clear()
@@ -126,6 +128,15 @@ class OpenProgramStart(QMainWindow, Ui_windowStart):
     def exit(self):
         try:
             ex_start.close()
+        except Exception:
+            pass
+
+    def change_db(self):
+        try:
+            self.database.close()
+            self.database = sqlite3.connect(QInputDialog.getText(self, 'Input Dialog',
+                                                                 'Введите название базы данных')[0])
+            self.cursor = self.database.cursor()
         except Exception:
             pass
 
@@ -149,3 +160,5 @@ ex_set = OpenProgramSettings()
 ex_start = OpenProgramStart()
 ex_start.show()
 sys.exit(app.exec_())
+ex_start.database.close()
+ex_set.database.close()
