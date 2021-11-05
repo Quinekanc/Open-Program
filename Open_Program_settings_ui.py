@@ -21,7 +21,7 @@ class Ui_windowSettings(object):
         sizePolicy.setHeightForWidth(windowSettings.sizePolicy().hasHeightForWidth())
         windowSettings.setSizePolicy(sizePolicy)
         windowSettings.setMinimumSize(QtCore.QSize(341, 361))
-        icon = QtGui.QIcon.fromTheme(r"icos\app.ico")
+        icon = QtGui.QIcon(r"icos//app.ico")
         windowSettings.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(windowSettings)
         self.centralwidget.setObjectName("centralwidget")
