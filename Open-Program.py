@@ -1,6 +1,7 @@
 import os
 import sys
 import sqlite3
+import math
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QInputDialog
 from Open_Program_settings_ui import Ui_windowSettings
 from Open_Program_ui import Ui_windowStart
@@ -94,6 +95,13 @@ class OpenProgramSettings(QMainWindow, Ui_windowSettings):
         except Exception:
             pass
 
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self.onMainWindowResize()
+
+    def onMainWindowResize(self):
+        self.setFixedSize(math.floor(self.size().width() * 1), math.floor(self.size().height() * 1))
+
 
 class OpenProgramStart(QMainWindow, Ui_windowStart):
     def __init__(self):
@@ -153,6 +161,13 @@ class OpenProgramStart(QMainWindow, Ui_windowStart):
             from openprogram where name = "{self.listView.currentItem().text()}"''').fetchall()[0][0])
         except Exception:
             pass
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self.onMainWindowResize()
+
+    def onMainWindowResize(self):
+        self.setFixedSize(math.floor(self.size().width() * 1), math.floor(self.size().height() * 1))
 
 
 app = QApplication(sys.argv)

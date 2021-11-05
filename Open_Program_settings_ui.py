@@ -20,6 +20,7 @@ class Ui_windowSettings(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(windowSettings.sizePolicy().hasHeightForWidth())
         windowSettings.setSizePolicy(sizePolicy)
+        windowSettings.setMinimumSize(QtCore.QSize(341, 361))
         icon = QtGui.QIcon(r"icos//app.ico")
         windowSettings.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(windowSettings)
